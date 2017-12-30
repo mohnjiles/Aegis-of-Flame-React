@@ -1,5 +1,4 @@
-# Holy crap this readme is long. It goes on about a lot of stuff about React. If you just want to get started, run
-### npm start
+# Holy crap this readme is long. It goes on about a lot of stuff about React. If you just want to get started, run `npm start`
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
