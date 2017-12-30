@@ -16,7 +16,8 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
-    this.getUserData();
+    if (isLoggedIn())
+      this.getUserData();
   }
 
   render() {
@@ -24,7 +25,11 @@ class HomePage extends Component {
     return (
       <div>
         <Nav />
-        <h3 className="text-center">Welcome back, {userData.email}!</h3>
+        {
+          (isLoggedIn()) ? <h3 className="text-center">Welcome back, {userData.email}!</h3>
+          : <h3 className="text-center">Welcome to Aegis of Flame!</h3>
+        }
+
       </div>
     )
   }

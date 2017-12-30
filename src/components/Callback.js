@@ -16,7 +16,7 @@ class Callback extends Component {
   }
 
   async doesUserExist(email) {
-    return (await getUser(email)) == null;
+    return (await getUser(email)) != null;
   }
 
   render() {

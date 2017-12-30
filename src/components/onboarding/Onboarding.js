@@ -27,7 +27,7 @@ class Onboarding extends Component {
     event.preventDefault();
     const { name, steamUrl, timezone, email } = this.state;
     addUser({name, steamUrl, timezone, email}).then(response => {
-      console.log(response);
+      window.location.href = '/';
     }).catch(error => {
       console.log(error);
       this.setState({alertVisible: true});

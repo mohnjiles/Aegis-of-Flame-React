@@ -61,6 +61,8 @@ export function getAccessToken() {
 
 function clearIdToken() {
   localStorage.removeItem(ID_TOKEN_KEY);
+  localStorage.removeItem(USER_ID);
+  localStorage.removeItem("user_email");
 }
 
 function clearAccessToken() {
@@ -91,7 +93,7 @@ async function setUserData(idToken){
   if (token.email) {
     localStorage.setItem("user_email", token.email);
     let user = await getUser(token.email);
-    if (user.id) {
+    if (user && user.id) {
       localStorage.setItem(USER_ID, user.id);
     }
   }
