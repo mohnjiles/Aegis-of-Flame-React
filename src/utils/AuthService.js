@@ -6,6 +6,12 @@ const ID_TOKEN_KEY = 'id_token';
 const ACCESS_TOKEN_KEY = 'access_token';
 const USER_ID = 'user_id';
 
+/******************************************
+
+  PUT THIS IN SEPARATE CONFIG FILE NOT ON GIT
+  IF WE EVER MAKE THIS PUBLIC
+
+******************************************/
 const CLIENT_ID = 'N5OGwtQ8haOFjz4wfgiyF8ic5NrInpU5';
 const CLIENT_DOMAIN = 'aof.auth0.com';
 const REDIRECT = 'http://localhost:3000/callback';
