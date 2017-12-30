@@ -1,6 +1,7 @@
 body, html {
   background: #333;
   color: white;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .App {
@@ -69,4 +70,8 @@ body, html {
 
 .dropdown-menu>li>a {
   color: white;
+}
+
+.underline {
+  text-decoration: underline;
 }
