@@ -5,6 +5,7 @@ import Callback from './components/Callback';
 import Onboarding from './components/onboarding/Onboarding';
 import UserProfile from './components/UserProfile';
 import AdminPage from './components/AdminPage';
+import MarshallComponent from './components/MarshallComponent';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { requireAuth } from './utils/AuthService';
 

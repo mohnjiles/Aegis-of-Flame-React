@@ -1,6 +1,17 @@
 # Holy crap this readme is long. It goes on about a lot of stuff about React. If you just want to get started, run `npm start`
 
 
+# AoF API stuff
+#### it all returns json.
+
+| endpoint     | variables    | method| comment |
+| --------|---------|-------|------|
+| /api/user/{email}| `email` : the users email address   | GET | get user by email
+| /api/user/id/{ids} | `ids` : comma separated user ids | GET    | get one or many users with character and dkp info
+| /api/game/{id} | `id` : steam app_id | GET | get steam game data
+| /api/dkp | none | GET | get users with dkp info
+| /api/games | none | GET | get currently playing games
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

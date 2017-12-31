@@ -3,6 +3,7 @@ import Nav from './Nav';
 import { isLoggedIn, getUserData } from '../utils/AuthService';
 import DKPTracker from './DKPTracker';
 import CurrentGames from './CurrentGames';
+import MarshallComponent from './MarshallComponent';
 
 class HomePage extends Component {
 
@@ -35,13 +36,12 @@ class HomePage extends Component {
           <DKPTracker/>
         </div>
         <div className="col-md-8 col-sm-9">
-
         </div>
         <div className="col-md-2 col-sm-3">
           <CurrentGames/>
         </div>
-
       </div>
+
     )
   }
 
