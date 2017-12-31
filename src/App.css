@@ -1,5 +1,5 @@
 body, html {
-  background: #333;
+  background: url('img/spiration dark.png');
   color: white;
   font-family: 'Open Sans', sans-serif;
 }
@@ -14,7 +14,7 @@ body, html {
 }
 
 .App-header {
-  background-color: #222;
+  background-color: rgba(0,0,0,0);
   height: 150px;
   padding: 20px;
   color: white;
@@ -39,7 +39,7 @@ body, html {
 }
 
 .navbar-default {
-  background-color: #333;
+  background-color: rgba(0,0,0,0);
   color: white;
   border: 0;
 }
@@ -74,4 +74,77 @@ body, html {
 
 .underline {
   text-decoration: underline;
+}
+
+.panel {
+  background: #111;
+  border-radius: 20px;
+}
+
+.panel-heading {
+  border-radius: 19px 19px 0px 0px;
+}
+
+.align-right {
+  text-align: right;
+}
+
+td > a {
+  color: white;
+}
+
+td > a:hover {
+  color: #ddd;
+  text-decoration: underline;
+}
+
+td.dkp-bad > a {
+  color: red;
+}
+
+td.dkp-bad > a:hover {
+  color: red;
+  text-decoration: underline;
+}
+
+.panel-success > .panel-heading {
+  background-color: #39a20e;
+  border-color: #39a20e;
+  color: white;
+  font-size: 1.5em;
+}
+
+.panel-success {
+  border-color: #39a20e;
+}
+
+.rounded-corner {
+  border-radius: 20px;
+}
+
+.table-borderless > tbody > tr > td,
+.table-borderless > tbody > tr > th,
+.table-borderless > tfoot > tr > td,
+.table-borderless > tfoot > tr > th,
+.table-borderless > thead > tr > td,
+.table-borderless > thead > tr > th {
+    border: none;
+    vertical-align: middle;
+}
+
+
+
+div.col-sm-3 > ul > li > a {
+  color: white;
+  border-radius: 20px;
+}
+
+div.col-sm-3 > ul > li > a:hover {
+  background-color: #2d6290;
+}
+
+.form-control {
+  background-color: #222;
+  color:white;
+  border-radius: 20px;
 }
