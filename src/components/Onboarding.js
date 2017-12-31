@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormGroup, FormControl, ControlLabel, Button, Alert } from 'react-bootstrap';
-import { addUser } from '../../utils/api';
-import { getUserData } from '../../utils/AuthService';
+import { addUser } from '../utils/api';
+import { getUserData } from '../utils/AuthService';
 
 class Onboarding extends Component {
 

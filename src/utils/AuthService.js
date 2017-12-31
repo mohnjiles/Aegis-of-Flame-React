@@ -14,7 +14,7 @@ const USER_ID = 'user_id';
 ******************************************/
 const CLIENT_ID = 'N5OGwtQ8haOFjz4wfgiyF8ic5NrInpU5';
 const CLIENT_DOMAIN = 'aof.auth0.com';
-const REDIRECT = 'http://localhost:3000/callback';
+const REDIRECT = 'http://jtmiles.xyz/aof2/callback';
 const SCOPE = 'openid email';
 const AUDIENCE = 'aof';
 
@@ -35,12 +35,12 @@ export function login() {
 export function logout() {
   clearIdToken();
   clearAccessToken();
-  window.location.href = '/';
+  window.location.href = '/aof2';
 }
 
 export function requireAuth(nextState, replace) {
   if (!isLoggedIn()) {
-    replace({pathname: '/'});
+    replace({pathname: '/aof2'});
   }
 }
 

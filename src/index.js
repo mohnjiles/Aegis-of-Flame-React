@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import HomePage from './components/HomePage';
 import Callback from './components/Callback';
-import Onboarding from './components/onboarding/Onboarding';
+import Onboarding from './components/Onboarding';
 import UserProfile from './components/UserProfile';
 import AdminPage from './components/AdminPage';
 import MarshallComponent from './components/MarshallComponent';
@@ -13,7 +13,7 @@ import { requireAuth } from './utils/AuthService';
 const Root = () => {
   return (
     <div className="container-fluid">
-      <BrowserRouter>
+      <BrowserRouter basename={'aof2'}>
         <div>
           <Route exact path="/" component={HomePage}/>
           {/* <Route path="/special" component={CelebrityJokes} onEnter={requireAuth}/> */}

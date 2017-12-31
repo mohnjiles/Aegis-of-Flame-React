@@ -39,9 +39,10 @@ body, html {
 }
 
 .navbar-default {
-  background-color: rgba(0,0,0,0);
+  background-color: #222;
   color: white;
   border: 0;
+  border-radius: 20px;
 }
 
 .navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a {
@@ -56,12 +57,14 @@ body, html {
   background: none;
   border: none;
   color: white;
+  padding-top: 0.4em;
 }
 
 .dropdown:hover, .btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover, .open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover {
   background-color: rgba(0,0,0,0.25);
   border: none;
   color: white;
+  padding-top: 0.4em;
 }
 
 .navbar-right .dropdown-menu {
@@ -112,6 +115,13 @@ td.dkp-bad > a:hover {
   border-color: #39a20e;
   color: white;
   font-size: 1.5em;
+  text-align: center;
+}
+
+.panel-heading {
+  color: white;
+  font-size: 1.5em;
+  text-align: center;
 }
 
 .panel-success {
@@ -147,4 +157,13 @@ div.col-sm-3 > ul > li > a:hover {
   background-color: #222;
   color:white;
   border-radius: 20px;
+}
+
+.no-border {
+  border: none;
+}
+
+.move-that-shit {
+  position: relative;
+  top: -150px;
 }

@@ -13,7 +13,7 @@ class Nav extends Component {
         </div>
         <ul className="nav navbar-nav">
           {
-            ( isLoggedIn() ) ? <li><Link to="/special">Member Area</Link></li> : ''
+            ( isLoggedIn() ) ? <li><Link to="/admin">Admin Area</Link></li> : ''
           }
         </ul>
         {

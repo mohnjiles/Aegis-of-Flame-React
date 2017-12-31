@@ -9,9 +9,9 @@ class Callback extends Component {
     await setIdToken();
 
     if (await this.doesUserExist(getUserData().email)) {
-      window.location.href = "/";
+      window.location.href = "/aof2";
     } else {
-      window.location.href = "/onboarding";
+      window.location.href = "/aof2/onboarding";
     }
   }
 

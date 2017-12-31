@@ -1,6 +1,7 @@
 {
   "name": "aof2",
   "version": "0.1.0",
+  "homepage": "/aof2/",
   "private": true,
   "dependencies": {
     "auth0-js": "^9.0.2",

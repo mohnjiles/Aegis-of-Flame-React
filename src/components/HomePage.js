@@ -4,6 +4,7 @@ import { isLoggedIn, getUserData } from '../utils/AuthService';
 import DKPTracker from './DKPTracker';
 import CurrentGames from './CurrentGames';
 import MarshallComponent from './MarshallComponent';
+import DiscordWidget from './DiscordWidget';
 
 class HomePage extends Component {
 
@@ -35,10 +36,15 @@ class HomePage extends Component {
         <div className="col-md-2 col-sm-3">
           <DKPTracker/>
         </div>
-        <div className="col-md-8 col-sm-9">
+        <div className="col-md-8 col-sm-6">
         </div>
         <div className="col-md-2 col-sm-3">
-          <CurrentGames/>
+          <div className="row">
+            <DiscordWidget/>
+          </div>
+          <div className="row">
+            <CurrentGames/>
+          </div>
         </div>
       </div>
 
