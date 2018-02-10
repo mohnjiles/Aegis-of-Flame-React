@@ -14,7 +14,7 @@ const USER_ID = 'user_id';
 ******************************************/
 const CLIENT_ID = 'N5OGwtQ8haOFjz4wfgiyF8ic5NrInpU5';
 const CLIENT_DOMAIN = 'aof.auth0.com';
-const REDIRECT = 'http://jtmiles.xyz/aof2/callback';
+const REDIRECT = 'http://localhost:3000/callback';
 const SCOPE = 'openid email';
 const AUDIENCE = 'aof';
 

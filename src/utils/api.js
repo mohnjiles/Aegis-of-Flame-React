@@ -3,7 +3,7 @@ import {getAccessToken} from './AuthService';
 
 const BASE_URL = 'http://localhost:3333';
 
-export {getFoodData, getUser, addUser, getDkp, getUsersById, getGames};
+export {getFoodData, getUser, addUser, getDkp, getUsersById, getGames, getNews};
 
 
 function getFoodData() {
@@ -34,4 +34,14 @@ function getDkp() {
 function getGames() {
   const url = `${BASE_URL}/api/games`;
   return axios.get(url).then(response => response.data);
+}
+
+function getNews() {
+  const url = `${BASE_URL}/api/news`;
+  return axios.get(url).then(response => response.data);
+}
+
+function addNews(formData) {
+  const url = `${BASE_URL}/api/news`;
+  return axios.post(url, formData).then(response => response.data);
 }

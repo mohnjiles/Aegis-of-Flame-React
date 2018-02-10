@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Nav as Navbar, NavItem} from 'react-bootstrap';
 import Nav from './Nav';
 import DKPManager from './DKPManager';
+import AddNews from './AddNews';
 
 class AdminPage extends Component {
 
@@ -19,6 +20,8 @@ class AdminPage extends Component {
     switch(param){
       case 1:
         return <DKPManager/>
+      case 2:
+        return <AddNews/>
       default:
         return <div>Hello</div>
     }
@@ -28,14 +31,14 @@ class AdminPage extends Component {
     return (
       <div>
         <Nav/>
-        <div class="container">
-          <div class="col-sm-3">
+        <div className="container">
+          <div className="col-sm-3">
             <Navbar bsStyle="pills" stacked activeKey={this.state.selectedIndex} onSelect={this.handleSelect}>
               <NavItem eventKey={1}>FP Management</NavItem>
-              <NavItem eventKey={2}>Active Games Management</NavItem>
+              <NavItem eventKey={2}>News Management</NavItem>
             </Navbar>
           </div>
-          <div class="col-sm-9">
+          <div className="col-sm-9">
             {this.renderSwitch(this.state.selectedIndex)}
           </div>
         </div>

@@ -5,17 +5,20 @@ import DKPTracker from './DKPTracker';
 import CurrentGames from './CurrentGames';
 import MarshallComponent from './MarshallComponent';
 import DiscordWidget from './DiscordWidget';
+import { getUsersById } from '../utils/api';
+import News from './News';
 
 class HomePage extends Component {
 
   constructor() {
     super();
-    this.state = { userData: {} };
+    this.state = { userData: {}, user: {} };
   }
 
-  getUserData() {
+  async getUserData() {
     const userData = getUserData();
-    this.setState({userData: userData});
+    const user = await getUsersById(userData.id);
+    this.setState({userData: userData, user: user[0]});
   }
 
   componentDidMount() {
@@ -24,12 +27,12 @@ class HomePage extends Component {
   }
 
   render() {
-    const { userData } = this.state;
+    const { userData, user } = this.state;
     return (
       <div>
         <Nav />
         {
-          (isLoggedIn()) ? <h3 className="text-center">Welcome back, {userData.email}!</h3>
+          (isLoggedIn()) ? <h3 className="text-center">Welcome back, {user.name}!</h3>
           : <h3 className="text-center">Welcome to Aegis of Flame!</h3>
         }
 
@@ -37,6 +40,7 @@ class HomePage extends Component {
           <DKPTracker/>
         </div>
         <div className="col-md-8 col-sm-6">
+          <News/>
         </div>
         <div className="col-md-2 col-sm-3">
           <div className="row">

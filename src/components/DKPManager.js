@@ -9,7 +9,8 @@ class DKPManager extends Component {
     this.state = {
       users: [],
       selectedUsers: [],
-      alertVisible: false
+      alertVisible: false,
+      dkpAmount: 0
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -63,6 +64,9 @@ class DKPManager extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const { selectedUsers, dkpAmount } = this.state;
+    console.log(selectedUsers);
+    console.log(dkpAmount);
     // const { name, steamUrl, timezone, email } = this.state;
     // addUser({name, steamUrl, timezone, email}).then(response => {
     //   window.location.href = '/';
@@ -73,6 +77,7 @@ class DKPManager extends Component {
   }
 
   render() {
+
     return (
       <div className="row">
         {this.state.alertVisible
@@ -109,7 +114,10 @@ class DKPManager extends Component {
               <FormControl
                 name="dkp"
                 placeholder="Enter a negative value to remove FP"
-                type="text"/>
+                name="dkpAmount"
+                onChange={ this.handleInputChange }
+                value={this.state.dkpAmount}
+                type="number"/>
             </FormGroup>
             <FormGroup>
               <ControlLabel>Reason</ControlLabel>

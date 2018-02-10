@@ -163,7 +163,25 @@ div.col-sm-3 > ul > li > a:hover {
   border: none;
 }
 
+.news-item {
+  padding-left: 1em;
+}
+
+.news-title {
+  font-weight: bold;
+}
+
 .move-that-shit {
   position: relative;
   top: -150px;
+}
+
+.react-mde, .mde-header ul.mde-header-group li.mde-header-item ul.react-mde-dropdown {
+  background-color: #222 !important;
+  color: white;
+}
+
+#ta1 {
+  background-color:#333;
+  color: white;
 }
