@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Nav as Navbar, NavItem} from 'react-bootstrap';
+import React, { Component } from 'react';
+import { Nav as Navbar, NavItem } from 'react-bootstrap';
 import Nav from './Nav';
 import DKPManager from './DKPManager';
 import AddNews from './AddNews';
@@ -9,7 +9,7 @@ class AdminPage extends Component {
   constructor(props) {
     super(props);
     this.handleSelect = this.handleSelect.bind(this);
-    this.state = { selectedIndex: 1 }
+    this.state = { selectedIndex: 2 }
   }
 
   handleSelect(selectedKey) {

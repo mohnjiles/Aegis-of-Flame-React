@@ -3,6 +3,8 @@ import { getNews } from '../utils/api';
 import { Panel } from 'react-bootstrap';
 import { getYoutubeId } from '../utils/utils';
 import YouTube from 'react-youtube';
+import { Markdown } from 'react-showdown';
+
 
 class News extends Component {
 
@@ -42,8 +44,8 @@ class News extends Component {
               let youtube;
               if (news.youtubeId != null) {
                 const opts = {
-                  height: '390',
-                  width: '640'
+                  height: '300',
+                  width: '98%'
                 };
                 youtube = <YouTube
                   videoId= {news.youtubeId}
@@ -58,7 +60,7 @@ class News extends Component {
                       <h2 className="news-title">{news.title}</h2>
                     </div>
                     <div className="row">
-                      <p>{news.content}</p>
+                      <Markdown markup={news.content}/>
                     </div>
                     <div className="row">
                       {youtube}

@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {FormGroup, FormControl, ControlLabel, Button, Alert, Checkbox} from 'react-bootstrap';
-import {getDkp} from '../utils/api';
+import React, { Component } from 'react';
+import { FormGroup, FormControl, ControlLabel, Button, Alert, Checkbox, Fade } from 'react-bootstrap';
+import { getDkp, setDkp } from '../utils/api';
 
 class DKPManager extends Component {
 
@@ -10,6 +10,10 @@ class DKPManager extends Component {
       users: [],
       selectedUsers: [],
       alertVisible: false,
+      alertText: "",
+      successText: "",
+      reason: "",
+      successVisible: false,
       dkpAmount: 0
     };
 
@@ -64,9 +68,14 @@ class DKPManager extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { selectedUsers, dkpAmount } = this.state;
-    console.log(selectedUsers);
-    console.log(dkpAmount);
+    const { selectedUsers, dkpAmount, reason } = this.state;
+
+    setDkp({ selectedUsers, dkpAmount, reason }).then(response => {
+      this.setState({successText: "FP Changed Successfully", successVisible: true});
+      setTimeout(() => {
+        this.setState({ successVisible: false });
+      }, 5000);
+    });
     // const { name, steamUrl, timezone, email } = this.state;
     // addUser({name, steamUrl, timezone, email}).then(response => {
     //   window.location.href = '/';
@@ -77,7 +86,6 @@ class DKPManager extends Component {
   }
 
   render() {
-
     return (
       <div className="row">
         {this.state.alertVisible
@@ -86,6 +94,12 @@ class DKPManager extends Component {
             </Alert>
           : ''
         }
+        <Fade in={this.state.successVisible}>
+         <Alert bsStyle="success">
+              {this.state.successText}
+          </Alert>
+        </Fade>
+
         <div className="col-sm-9">
           <form onSubmit={this.handleSubmit}>
             <FormGroup>
@@ -124,6 +138,8 @@ class DKPManager extends Component {
               <FormControl
                 name="reason"
                 placeholder="Reason for FP change"
+                onChange={ this.handleInputChange }
+                value={ this.state.reason }
                 type="text"/>
             </FormGroup>
             <Button type="submit" bsStyle="success">Submit</Button>

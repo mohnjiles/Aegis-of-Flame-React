@@ -1,9 +1,9 @@
 import axios from 'axios';
 import {getAccessToken} from './AuthService';
 
-const BASE_URL = 'http://localhost:3333';
+const BASE_URL = 'http://jtmiles.xyz:3333';
 
-export {getFoodData, getUser, addUser, getDkp, getUsersById, getGames, getNews};
+export {getFoodData, getUser, addUser, getDkp, getDkpEvents, getUsersById, getGames, getNews, setDkp, addNews, getEvents};
 
 
 function getFoodData() {
@@ -31,6 +31,11 @@ function getDkp() {
   return axios.get(url).then(response => response.data);
 }
 
+function getDkpEvents(id) {
+  const url = `${BASE_URL}/api/dkpevents/${id}`;
+  return axios.get(url).then(response => response.data);
+}
+
 function getGames() {
   const url = `${BASE_URL}/api/games`;
   return axios.get(url).then(response => response.data);
@@ -44,4 +49,14 @@ function getNews() {
 function addNews(formData) {
   const url = `${BASE_URL}/api/news`;
   return axios.post(url, formData).then(response => response.data);
+}
+
+function setDkp(formData) {
+  const url = `${BASE_URL}/api/dkp`;
+  return axios.post(url, formData).then(response => response.data);
+}
+
+function getEvents() {
+  const url= `${BASE_URL}/api/events`;
+  return axios.get(url).then(response => response.data);
 }

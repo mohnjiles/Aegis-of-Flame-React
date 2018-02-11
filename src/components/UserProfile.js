@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { getUsersById } from '../utils/api';
+import { getUsersById, getDkpEvents } from '../utils/api';
 import Nav from './Nav';
 import { Panel } from 'react-bootstrap';
+import DKPEvents from './DKPEvents';
 
 class UserProfile extends Component {
   constructor(props) {
     super(props);
-    this.state = { userId: props.match.params.id, user: null };
+    this.state = { userId: props.match.params.id, user: null, dkpEvents: null };
   }
 
   componentDidMount() {
@@ -19,13 +20,13 @@ class UserProfile extends Component {
     });
   }
 
-
   render() {
     return (
       <div>
         <Nav/>
         <div className="row">
-          <div className="col-sm-10 col-sm-offset-1">
+          <DKPEvents id={this.state.userId}/>
+          <div className="col-sm-5">
             { (this.state.user != null) ? (
                 <Panel bsStyle="success" className="text-center" header={this.state.user.name}>
                     <div className="row">

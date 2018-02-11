@@ -1,5 +1,6 @@
 body, html {
-  background: url('img/spiration dark.png');
+  background: url('img/footer_lodyas.png');
+  /* background-color: #343; */
   color: white;
   font-family: 'Open Sans', sans-serif;
 }
@@ -165,6 +166,12 @@ div.col-sm-3 > ul > li > a:hover {
 
 .news-item {
   padding-left: 1em;
+  margin-bottom: 1em;
+}
+
+.news-item:not(:first-child) {
+  border-top: 1px solid white;
+  margin-top: 1em;
 }
 
 .news-title {
@@ -184,4 +191,14 @@ div.col-sm-3 > ul > li > a:hover {
 #ta1 {
   background-color:#333;
   color: white;
+}
+
+.success-visible {
+  transition: opacity 0.5s;
+  opacity: 1;
+}
+.success-hidden {
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events:none;
 }

@@ -11,12 +11,14 @@ import { requireAuth } from './utils/AuthService';
 
 import 'font-awesome/css/font-awesome.css';
 import 'react-mde/lib/styles/css/react-mde-all.css';
+import 'react-grid-layout/css/styles.css'
+import 'react-resizable/css/styles.css'
 
 const Root = () => {
   return (
     <div className="container-fluid">
-      {/* <BrowserRouter basename={'aof2'}> */}
-      <BrowserRouter>
+      <BrowserRouter basename={'aof2'}>
+      {/* <BrowserRouter> */}
         <div>
           <Route exact path="/" component={HomePage}/>
           {/* <Route path="/special" component={CelebrityJokes} onEnter={requireAuth}/> */}
