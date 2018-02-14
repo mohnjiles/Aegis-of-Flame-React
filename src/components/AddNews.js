@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactMde, { ReactMdeCommands } from 'react-mde';
-import { FormGroup, FormControl, ControlLabel, Button, Alert } from 'react-bootstrap';
+import { FormGroup, FormControl, ControlLabel, Button, Alert, Fade } from 'react-bootstrap';
 import { addNews } from '../utils/api';
 
 class AddNews extends Component {
@@ -10,7 +10,14 @@ class AddNews extends Component {
     this.handleValueChange = this.handleValueChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = { mdeValue: { text: '', selection: null }, title: '' };
+    this.state = { 
+        mdeValue: { text: '', selection: null }, 
+        title: '',
+        alertVisible: false,
+        alertText: "",
+        successText: "",
+        successVisible: false
+      };
   }
 
   handleValueChange = (value) => {
@@ -31,22 +38,40 @@ class AddNews extends Component {
     event.preventDefault();
     const { mdeValue, title } = this.state;
     addNews({ title, content: mdeValue.text }).then(response => {
-      console.log('success');
+      this.setState({ successVisible: true, successText: "News added successfully."})
+      setTimeout(() => {
+        this.setState({ successVisible: false});
+      }, 5000);
     }).catch(error => {
-      console.log(error);
+      this.setState({ alertVisible: true, alertText: error.response.data});
+      setTimeout(() => {
+        this.setState({ alertVisible: false});
+      }, 5000);
     });
-    // addUser({name, steamUrl, timezone, email}).then(response => {
-    //   window.location.href = '/';
-    // }).catch(error => {
-    //   console.log(error);
-    //   this.setState({alertVisible: true});
-    // });
   }
 
   render() {
 
       return (
           <div className="col-md-9">
+          { this.state.alertVisible ?
+          (
+            <Fade in={this.state.alertVisible}>
+            <Alert bsStyle="danger">
+                  {this.state.alertText}
+              </Alert>
+            </Fade>
+          ) : ''
+          }
+          { this.state.successVisible ?
+          (
+            <Fade in={this.state.successVisible}>
+            <Alert bsStyle="success">
+                  {this.state.successText}
+              </Alert>
+            </Fade>
+          ) : ''
+          }
             <form onSubmit={this.handleSubmit}>
               <FormGroup>
                 <ControlLabel>

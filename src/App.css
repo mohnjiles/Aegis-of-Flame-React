@@ -165,7 +165,8 @@ div.col-sm-3 > ul > li > a:hover {
 }
 
 .news-item {
-  padding-left: 1em;
+  padding-left: 2em;
+  padding-right: 1em;
   margin-bottom: 1em;
 }
 

@@ -47,24 +47,24 @@ class DKPManager extends Component {
   }
 
   onCheckChange(e) {
-  // current array of options
-  const users = this.state.selectedUsers
-  let index;
+    // current array of options
+    const users = this.state.selectedUsers
+    let index;
 
-  // check if the check box is checked or unchecked
-  if (e.target.checked) {
-    // add the numerical value of the checkbox to options array
-    users.push(+e.target.value)
-  } else {
-    // or remove the value from the unchecked checkbox from the array
-    index = users.indexOf(+e.target.value)
-    users.splice(index, 1)
+    // check if the check box is checked or unchecked
+    if (e.target.checked) {
+      // add the numerical value of the checkbox to options array
+      users.push(+e.target.value)
+    } else {
+      // or remove the value from the unchecked checkbox from the array
+      index = users.indexOf(+e.target.value)
+      users.splice(index, 1)
+    }
+
+    // update the state with the new array of options
+    this.setState({ selectedUsers: users });
+    console.log(this.state.selectedUsers);
   }
-
-  // update the state with the new array of options
-  this.setState({ selectedUsers: users });
-  console.log(this.state.selectedUsers);
-}
 
   handleSubmit(event) {
     event.preventDefault();
@@ -75,30 +75,35 @@ class DKPManager extends Component {
       setTimeout(() => {
         this.setState({ successVisible: false });
       }, 5000);
+    }).catch((err) => {
+      this.setState({alertVisible: true, alertText: `Error: ${err.response.data}`});
+      setTimeout(() => {
+        this.setState({ alertVisible: false });
+      }, 7500);
     });
-    // const { name, steamUrl, timezone, email } = this.state;
-    // addUser({name, steamUrl, timezone, email}).then(response => {
-    //   window.location.href = '/';
-    // }).catch(error => {
-    //   console.log(error);
-    //   this.setState({alertVisible: true});
-    // });
   }
 
   render() {
     return (
       <div className="row">
-        {this.state.alertVisible
-          ? <Alert bsStyle="danger">
-              Error: {this.state.alertText}
+       { this.state.alertVisible ?
+        (
+          <Fade in={this.state.alertVisible}>
+          <Alert bsStyle="danger">
+                {this.state.alertText}
             </Alert>
-          : ''
+          </Fade>
+        ) : ''
         }
-        <Fade in={this.state.successVisible}>
-         <Alert bsStyle="success">
-              {this.state.successText}
-          </Alert>
-        </Fade>
+       { this.state.successVisible ?
+        (
+          <Fade in={this.state.successVisible}>
+          <Alert bsStyle="success">
+                {this.state.successText}
+            </Alert>
+          </Fade>
+        ) : ''
+        }
 
         <div className="col-sm-9">
           <form onSubmit={this.handleSubmit}>

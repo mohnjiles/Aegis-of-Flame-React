@@ -17,8 +17,8 @@ import 'react-resizable/css/styles.css'
 const Root = () => {
   return (
     <div className="container-fluid">
-      <BrowserRouter basename={'aof2'}>
-      {/* <BrowserRouter> */}
+      {/* <BrowserRouter basename={'aof2'}> */}
+      <BrowserRouter>
         <div>
           <Route exact path="/" component={HomePage}/>
           {/* <Route path="/special" component={CelebrityJokes} onEnter={requireAuth}/> */}

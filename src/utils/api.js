@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {getAccessToken} from './AuthService';
 
-const BASE_URL = 'http://jtmiles.xyz:3333';
+const BASE_URL = 'http://localhost:3333';
 
 export {getFoodData, getUser, addUser, getDkp, getDkpEvents, getUsersById, getGames, getNews, setDkp, addNews, getEvents};
 
@@ -53,7 +53,7 @@ function addNews(formData) {
 
 function setDkp(formData) {
   const url = `${BASE_URL}/api/dkp`;
-  return axios.post(url, formData).then(response => response.data);
+  return axios.post(url, formData);
 }
 
 function getEvents() {

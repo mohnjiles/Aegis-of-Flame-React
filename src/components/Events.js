@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
 import { getEvents } from '../utils/api';
 import Time from 'react-time';
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 class Events extends Component {
 
@@ -64,7 +66,9 @@ class Events extends Component {
                           {event.name}
                         </td>
                         <td>
-                          <Time value={event.start_time} format="ddd MMM DDt\h, h:mm a"/>
+                          <Moment format="ddd MMM Do, hh:mm a">
+                          {event.start_time}
+                          </Moment>
                         </td>
                         <td>
                           {this.getNumMembersSignedUp(event)} / 8
