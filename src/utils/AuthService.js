@@ -1,10 +1,12 @@
 import decode from 'jwt-decode';
 import auth0 from 'auth0-js';
 import { getUser } from '../utils/api';
+const config = require('../config.json');
 
 const ID_TOKEN_KEY = 'id_token';
 const ACCESS_TOKEN_KEY = 'access_token';
 const USER_ID = 'user_id';
+
 
 /******************************************
 
@@ -14,7 +16,7 @@ const USER_ID = 'user_id';
 ******************************************/
 const CLIENT_ID = 'N5OGwtQ8haOFjz4wfgiyF8ic5NrInpU5';
 const CLIENT_DOMAIN = 'aof.auth0.com';
-const REDIRECT = 'http://localhost:3000/callback';
+const REDIRECT = config.callback_url;
 const SCOPE = 'openid email';
 const AUDIENCE = 'aof';
 

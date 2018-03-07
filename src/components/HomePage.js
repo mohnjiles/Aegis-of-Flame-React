@@ -7,7 +7,8 @@ import DiscordWidget from './DiscordWidget';
 import { getUsersById } from '../utils/api';
 import News from './News';
 import Events from './Events';
-
+import DKPEvents from './DKPEvents';
+import MarshallComponent from './MarshallComponent';
 
 class HomePage extends Component {
 

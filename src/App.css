@@ -203,3 +203,7 @@ div.col-sm-3 > ul > li > a:hover {
   transition: opacity 0.5s;
   pointer-events:none;
 }
+
+.news-item img {
+  width: 98%;
+}

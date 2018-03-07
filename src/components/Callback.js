@@ -1,6 +1,8 @@
-import { Component } from 'react';
-import { setIdToken, setAccessToken, getUserData } from '../utils/AuthService';
-import { getUser } from '../utils/api';
+import {Component} from 'react';
+import {setIdToken, setAccessToken, getUserData} from '../utils/AuthService';
+import {getUser} from '../utils/api';
+
+const config = require('../config.json');
 
 class Callback extends Component {
 
@@ -9,7 +11,12 @@ class Callback extends Component {
     await setIdToken();
 
     if (await this.doesUserExist(getUserData().email)) {
-      window.location.href = "/aof2";
+      if (config.prod == "true") {
+        window.location.href = "/aof2";
+      } else {
+        window.location.href = '/';
+      }
+
     } else {
       window.location.href = "/aof2/onboarding";
     }

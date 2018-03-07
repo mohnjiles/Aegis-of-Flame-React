@@ -1,7 +1,9 @@
 import axios from 'axios';
 import {getAccessToken} from './AuthService';
 
-const BASE_URL = 'http://localhost:3333';
+const config = require('../config.json');
+
+const BASE_URL = config.api_base_url;
 
 export {getFoodData, getUser, addUser, getDkp, getDkpEvents, getUsersById, getGames, getNews, setDkp, addNews, getEvents};
 
