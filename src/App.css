@@ -207,3 +207,14 @@ div.col-sm-3 > ul > li > a:hover {
 .news-item img {
   width: 98%;
 }
+
+.top-1 {
+  margin-top: 1em;
+}
+
+.bg-thing { 
+  background-color: rgba(0,0,0,0.25);
+  border-radius: 5em;
+  padding: 2em;
+  text-align: center;
+}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Nav as Navbar, NavItem } from 'react-bootstrap';
 import Nav from './Nav';
 import DKPManager from './DKPManager';
-import AddNews from './AddNews';
+import NewsManager from './NewsManager';
 import EventManager from './EventManager';
 
 class AdminPage extends Component {
@@ -22,7 +22,7 @@ class AdminPage extends Component {
       case 1:
         return <DKPManager/>
       case 2:
-        return <AddNews/>
+        return <NewsManager/>
       case 3:
         return <EventManager/>
       default:

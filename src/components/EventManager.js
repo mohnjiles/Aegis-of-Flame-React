@@ -53,6 +53,26 @@ class EventManager extends Component {
   render() {
 
       return (
+
+        <div className="row">
+          { this.state.alertVisible ?
+            (
+              <Fade in={this.state.alertVisible}>
+              <Alert bsStyle="danger">
+                    {this.state.alertText}
+                </Alert>
+              </Fade>
+            ) : ''
+          }
+          { this.state.successVisible ?
+            (
+              <Fade in={this.state.successVisible}>
+              <Alert bsStyle="success">
+                    {this.state.successText}
+                </Alert>
+              </Fade>
+            ) : ''
+          }
           <div className="col-md-9">
             <form onSubmit={this.handleSubmit}>
               <FormGroup>
@@ -93,6 +113,7 @@ class EventManager extends Component {
                 bsStyle="success">Submit</Button>
             </form>
 
+            </div>  
           </div>
       );
   }

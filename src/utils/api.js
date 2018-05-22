@@ -5,7 +5,7 @@ const config = require('../config.json');
 
 const BASE_URL = config.api_base_url;
 
-export {getFoodData, getUser, addUser, getDkp, getDkpEvents, getUsersById, getGames, getNews, setDkp, addNews, getEvents};
+export {getFoodData, getUser, addUser, getDkp, getDkpEvents, getUsersById, getGames, getNews, setDkp, addNews, getEvents, updateLodestoneId, getLodestoneData};
 
 
 function getFoodData() {
@@ -60,5 +60,20 @@ function setDkp(formData) {
 
 function getEvents() {
   const url= `${BASE_URL}/api/events`;
+  return axios.get(url).then(response => response.data);
+}
+
+function addEvents(formData) {
+  const url = `${BASE_URL}/api/events`;
+  return axios.post(url, formData).then(response => response.data);
+}
+
+function updateLodestoneId(formData) {
+  const url = `${BASE_URL}/api/lodestone`;
+  return axios.post(url, formData).then(response => response.data);
+} 
+
+function getLodestoneData(id){
+  const url = `https://api.xivdb.com/character/${id}`;
   return axios.get(url).then(response => response.data);
 }

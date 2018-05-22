@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { FormGroup, FormControl, ControlLabel, Button, Alert, Checkbox, Fade } from 'react-bootstrap';
 import { getDkp, setDkp } from '../utils/api';
+import { showSuccessMessage, showErrorMessage } from '../utils/utils';
+import DankAlert from './DankAlert';
 
 class DKPManager extends Component {
 
@@ -9,11 +11,7 @@ class DKPManager extends Component {
     this.state = {
       users: [],
       selectedUsers: [],
-      alertVisible: false,
-      alertText: "",
-      successText: "",
       reason: "",
-      successVisible: false,
       dkpAmount: 0
     };
 
@@ -71,39 +69,17 @@ class DKPManager extends Component {
     const { selectedUsers, dkpAmount, reason } = this.state;
 
     setDkp({ selectedUsers, dkpAmount, reason }).then(response => {
-      this.setState({successText: "FP Changed Successfully", successVisible: true});
-      setTimeout(() => {
-        this.setState({ successVisible: false });
-      }, 5000);
+      this.refs.alert.showAlert("FP updated successfully.", "success");
     }).catch((err) => {
-      this.setState({alertVisible: true, alertText: `Error: ${err.response.data}`});
-      setTimeout(() => {
-        this.setState({ alertVisible: false });
-      }, 7500);
+      this.refs.alert.showAlert(`Error: ${err.response.data}`, "danger");
     });
   }
 
   render() {
     return (
       <div className="row">
-       { this.state.alertVisible ?
-        (
-          <Fade in={this.state.alertVisible}>
-          <Alert bsStyle="danger">
-                {this.state.alertText}
-            </Alert>
-          </Fade>
-        ) : ''
-        }
-       { this.state.successVisible ?
-        (
-          <Fade in={this.state.successVisible}>
-          <Alert bsStyle="success">
-                {this.state.successText}
-            </Alert>
-          </Fade>
-        ) : ''
-        }
+       
+        <DankAlert ref="alert"/>
 
         <div className="col-sm-9">
           <form onSubmit={this.handleSubmit}>
