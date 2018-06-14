@@ -4,8 +4,9 @@ import {getAccessToken} from './AuthService';
 const config = require('../config.json');
 
 const BASE_URL = config.api_base_url;
+const FFLOGS_API_KEY = config.fflogs_api_key;
 
-export {getFoodData, getUser, addUser, getDkp, getDkpEvents, getUsersById, getGames, getNews, setDkp, addNews, getEvents, updateLodestoneId, getLodestoneData};
+export {getFoodData, getUser, addUser, getDkp, getDkpEvents, getUsersById, getGames, getNews, setDkp, addNews, getEvents, updateLodestoneId, getLodestoneData, getFFLogsData};
 
 
 function getFoodData() {
@@ -75,5 +76,10 @@ function updateLodestoneId(formData) {
 
 function getLodestoneData(id){
   const url = `https://api.xivdb.com/character/${id}`;
+  return axios.get(url).then(response => response.data);
+}
+
+function getFFLogsData(characterName, server, metric) {
+  const url = `https://www.fflogs.com/v1/parses/character/${characterName}/${server}/NA?metric=${metric}&api_key=${FFLOGS_API_KEY}`;
   return axios.get(url).then(response => response.data);
 }

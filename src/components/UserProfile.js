@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {getUsersById, getDkpEvents, getUser, getLodestoneData} from '../utils/api';
+import {getUsersById, getDkpEvents, getUser, getLodestoneData, getFFLogsData} from '../utils/api';
 import Nav from './Nav';
 import {Panel} from 'react-bootstrap';
 import DKPEvents from './DKPEvents';
 import {isLoggedIn, getUserData} from '../utils/AuthService';
 import SetLodestoneId from './SetLodestoneId';
+import BestLogs from './BestLogs';
 
 class UserProfile extends Component {
   constructor(props) {
@@ -14,7 +15,8 @@ class UserProfile extends Component {
       user: null,
       dkpEvents: null,
       isOwnPage: false,
-      lodestoneData: null
+      lodestoneData: null,
+      fflogsData: null
     };
   }
 
@@ -31,7 +33,16 @@ class UserProfile extends Component {
       this.setState({user: users[0]});
       if (this.state.user.lodestone_id != "") {
         getLodestoneData(this.state.user.lodestone_id).then(data => {
+          console.log(data);
           this.setState({lodestoneData: data});
+
+          let name = data.data.name;
+          let server = data.data.server;
+          let metric = "dps";
+          
+          getFFLogsData(name, server, metric).then(data => {
+            this.setState({fflogsData: data});
+          })
         });
       }
     });
@@ -42,7 +53,7 @@ class UserProfile extends Component {
       <div>
         <Nav/>
         <div className="row">
-          <div class="col-md-8 col-md-offset-2">
+          <div className="col-md-8 col-md-offset-2">
             {this.state.isOwnPage && this.state.user && this.state.user.lodestone_id == ""
               ? <SetLodestoneId/>
               : null}
@@ -67,10 +78,17 @@ class UserProfile extends Component {
                       <h5>{this.state.lodestoneData.data.title}</h5>
                     </div>
                   </div>
+                  <div>
+                    <BestLogs 
+                      name={this.state.lodestoneData.data.name}
+                      server={this.state.lodestoneData.data.server}
+                      metric="dps"
+                    />
+                  </div>
                 </Panel>
               )
               : ''
-}
+            }
           </div>
         </div>
       </div>

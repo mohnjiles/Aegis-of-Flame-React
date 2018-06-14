@@ -1,5 +1,5 @@
 
-export { getYoutubeId, showSuccessMessage, showErrorMessage };
+export { getYoutubeId, showSuccessMessage, showErrorMessage, arrayUnique };
 
 
 function getYoutubeId(url) {
@@ -25,4 +25,16 @@ function showErrorMessage(component, message) {
   setTimeout(() => {
     component.setState({ alertVisible: false });
   }, 7500);
+}
+
+function arrayUnique(array) {
+  var a = array.concat();
+  for(var i=0; i<a.length; ++i) {
+      for(var j=i+1; j<a.length; ++j) {
+          if(a[i] === a[j])
+              a.splice(j--, 1);
+      }
+  }
+
+  return a;
 }
