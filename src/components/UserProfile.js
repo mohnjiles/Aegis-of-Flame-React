@@ -33,7 +33,6 @@ class UserProfile extends Component {
       this.setState({user: users[0]});
       if (this.state.user.lodestone_id != "") {
         getLodestoneData(this.state.user.lodestone_id).then(data => {
-          console.log(data);
           this.setState({lodestoneData: data});
 
           let name = data.data.name;

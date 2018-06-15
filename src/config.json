@@ -1,6 +1,5 @@
 {
-    "api_base_url" : "http://jtmiles.xyz:3333",
-    "callback_url" : "http://jtmiles.xyz/aof2/callback", 
-    "prod" : "true",
-    "fflogs_api_key" : "14365d33a7731314c4b54a17c5a89a44"
+    "api_base_url" : "http://localhost:3333",
+    "callback_url" : "http://localhost:3000/callback", 
+    "prod" : "false"
 }

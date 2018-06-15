@@ -3,7 +3,8 @@ import {getFFLogsData} from '../utils/api';
 import {arrayUnique} from '../utils/utils';
 import {Button, Table} from 'react-bootstrap';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
-import moment from 'moment';
+
+import ParseCharts from './ParseCharts';
 
 class BestLogs extends Component {
     constructor(props) {
@@ -11,12 +12,13 @@ class BestLogs extends Component {
         this.state = {
             logData: null,
             selectedSpec: null,
-            availableClasses: null
+            availableClasses: null,
+            metric: "dps"
         };
     }
 
     componentDidMount() {
-        getFFLogsData(this.props.name, this.props.server, "dps").then(data => {
+        getFFLogsData(this.props.name, this.props.server, this.state.metric).then(data => {
             this.setState({logData: data});
             this.getAvailableClasses();
         });
@@ -52,8 +54,6 @@ class BestLogs extends Component {
             }
         });
 
-        console.log(parsesWithSpec);
-
         return (
             <div>
 
@@ -64,7 +64,7 @@ class BestLogs extends Component {
                         <tr>
                             <th>Boss</th>
                             <th>Best Historical %</th>
-                            <th>Best DPS</th>
+                            <th>Best {this.state.metric == "dps" ? "DPS" : "HPS"}</th>
                             <th>Kills</th>
                         </tr>
                     </thead>
@@ -91,11 +91,13 @@ class BestLogs extends Component {
 
     selectSpec(spec) {
         this.setState({selectedSpec: spec});
-        console.log(spec);
     }
 
-    formatXAxis = (tickItem) => {
-        return moment(tickItem).format("YYYY-MM-DD");
+    selectMetric(metric) {
+        this.setState({metric: metric});
+        getFFLogsData(this.props.name, this.props.server, metric).then(data => {
+            this.setState({logData: data});
+        });
     }
 
     render() {
@@ -107,7 +109,8 @@ class BestLogs extends Component {
                             this.state.availableClasses != null ? 
                             this.state.availableClasses.map((spec, index) => {
                                 return (
-                                    <Button key={index} onClick={this.selectSpec.bind(this, spec)}
+                                    <Button style={{ marginRight: '0.4em' }}
+                                        key={index} onClick={this.selectSpec.bind(this, spec)}
                                         bsStyle={this.state.selectedSpec == spec ? "success" : "danger"}>
                                         {spec}
                                     </Button>
@@ -119,33 +122,27 @@ class BestLogs extends Component {
                 </div>
                 <div className="row">
                     <div className="col-sm-12">
+                        <Button onClick={this.selectMetric.bind(this, "dps")} style={{ marginTop: '0.4em', marginRight: '0.4em' }}
+                            bsStyle={this.state.metric == "dps" ? "info" : "danger"}>
+                            {"DPS"}
+                        </Button>
+                        <Button onClick={this.selectMetric.bind(this, "hps")} style={{ marginTop: '0.4em' }}
+                            bsStyle={this.state.metric == "hps" ? "info" : "danger"}>
+                            {"Healing"}
+                        </Button>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-sm-12">
                         { this.state.selectedSpec != null ? 
                             this.getBestParsesForSpec(this.state.selectedSpec)
                             : ""
                         }
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-sm-12">
-                    {this.state.logData != null && this.state.selectedSpec != null ?
-                    <div>
-                        <h2>Phantom Train</h2>
-                        <LineChart width={600} height={300} data={this.state.logData[0].specs.find(x => x.spec == this.state.selectedSpec).data.sort((a, b) => {
-                            return a.start_time < b.start_time ? 0 : 1;
-                        })}>
-                            <Line type="monotone" dataKey="persecondamount" stroke="#8884d8" />
-                            <XAxis dataKey="start_time" tickFormatter={this.formatXAxis} />
-                            <YAxis />
-                            <Tooltip labelFormatter={this.formatXAxis}
-                                wrapperStyle={{
-                                    backgroundColor: "#333"
-                                }}/>
-                        </LineChart>
-                    </div>
-                        : ""
-                    }
-                    </div>
-                </div>
+                <ParseCharts
+                    selectedSpec={this.state.selectedSpec}
+                    logData={this.state.logData}/>
             </div>
         )
     }

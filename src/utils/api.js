@@ -80,6 +80,6 @@ function getLodestoneData(id){
 }
 
 function getFFLogsData(characterName, server, metric) {
-  const url = `https://www.fflogs.com/v1/parses/character/${characterName}/${server}/NA?metric=${metric}&api_key=${FFLOGS_API_KEY}`;
+  const url = `${BASE_URL}/api/fflogs/${characterName}/${server}/${metric}`;
   return axios.get(url).then(response => response.data);
 }
