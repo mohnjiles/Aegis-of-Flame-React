@@ -23,7 +23,6 @@ class News extends Component {
       let theNews = news.map((news) => {
         let id = getYoutubeId(news.content);
         if (id !== false) {
-          console.log(id);
           news.youtubeId = id;
         }
         return news;

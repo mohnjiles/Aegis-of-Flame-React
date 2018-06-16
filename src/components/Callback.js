@@ -11,7 +11,7 @@ class Callback extends Component {
     await setIdToken();
 
     if (await this.doesUserExist(getUserData().email)) {
-      if (config.prod == "true") {
+      if (config.prod === "true") {
         window.location.href = "/aof2";
       } else {
         window.location.href = '/';

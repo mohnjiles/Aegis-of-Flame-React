@@ -5,7 +5,6 @@ import Callback from './components/Callback';
 import Onboarding from './components/Onboarding';
 import UserProfile from './components/UserProfile';
 import AdminPage from './components/AdminPage';
-import MarshallComponent from './components/MarshallComponent';
 import {BrowserRouter, Route} from 'react-router-dom';
 import {requireAuth} from './utils/AuthService';
 
@@ -19,7 +18,7 @@ const config = require('./config.json');
 const Root = () => {
   return (
     <div className="container-fluid">
-      {config.prod == "false"
+      {config.prod === "false"
         ? (
           <BrowserRouter>
             <div>

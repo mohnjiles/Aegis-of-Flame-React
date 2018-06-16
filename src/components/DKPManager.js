@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { FormGroup, FormControl, ControlLabel, Button, Alert, Checkbox, Fade } from 'react-bootstrap';
+import { FormGroup, FormControl, ControlLabel, Button,  Checkbox } from 'react-bootstrap';
 import { getDkp, setDkp } from '../utils/api';
-import { showSuccessMessage, showErrorMessage } from '../utils/utils';
 import DankAlert from './DankAlert';
 
 class DKPManager extends Component {
@@ -107,7 +106,6 @@ class DKPManager extends Component {
             <FormGroup>
               <ControlLabel>FP</ControlLabel>
               <FormControl
-                name="dkp"
                 placeholder="Enter a negative value to remove FP"
                 name="dkpAmount"
                 onChange={ this.handleInputChange }

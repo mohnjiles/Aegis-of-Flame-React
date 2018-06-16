@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {getUsersById, getDkpEvents, getUser, getLodestoneData, getFFLogsData} from '../utils/api';
+import {getUsersById, getLodestoneData, getFFLogsData} from '../utils/api';
 import Nav from './Nav';
 import {Panel} from 'react-bootstrap';
 import DKPEvents from './DKPEvents';
-import {isLoggedIn, getUserData} from '../utils/AuthService';
+import {getUserData} from '../utils/AuthService';
 import SetLodestoneId from './SetLodestoneId';
 import BestLogs from './BestLogs';
+import ClassJobs from './ClassJobs';
 
 class UserProfile extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class UserProfile extends Component {
   componentDidMount() {
     this.getUserInfo();
 
-    if (this.state.userId == getUserData().id) {
+    if (this.state.userId === getUserData().id) {
       this.setState({isOwnPage: true});
     }
   }
@@ -31,7 +32,7 @@ class UserProfile extends Component {
   getUserInfo() {
     getUsersById(this.state.userId).then(users => {
       this.setState({user: users[0]});
-      if (this.state.user.lodestone_id != "") {
+      if (this.state.user.lodestone_id !== "") {
         getLodestoneData(this.state.user.lodestone_id).then(data => {
           this.setState({lodestoneData: data});
 
@@ -53,7 +54,7 @@ class UserProfile extends Component {
         <Nav/>
         <div className="row">
           <div className="col-md-8 col-md-offset-2">
-            {this.state.isOwnPage && this.state.user && this.state.user.lodestone_id == ""
+            {this.state.isOwnPage && this.state.user && this.state.user.lodestone_id === ""
               ? <SetLodestoneId/>
               : null}
           </div>
@@ -73,8 +74,26 @@ class UserProfile extends Component {
                       <p>Total FP: {this.state.user.dkp.dkp}</p>
                     </div>
                     <div className="col-sm-9">
-                      <h4>{this.state.lodestoneData.name}</h4>
-                      <h5>{this.state.lodestoneData.data.title}</h5>
+                      <div className="row">
+                        <div className="col-sm-6">
+                          <h3 style={{padding:0, margin:0}}>{this.state.lodestoneData.name}</h3>
+                          <h5>{this.state.lodestoneData.data.title}</h5>
+                        </div>
+                        <div className="col-sm-6 align-right">
+                          <span>
+                            Mounts: {this.state.lodestoneData.extras.mounts.obtained} / {this.state.lodestoneData.extras.mounts.total} ({this.state.lodestoneData.extras.mounts.percent}%)
+                          </span>
+                          <br/>
+                          <span>
+                            Minions: {this.state.lodestoneData.extras.minions.obtained} / {this.state.lodestoneData.extras.minions.total} ({this.state.lodestoneData.extras.minions.percent}%)
+                          </span>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-sm-12">
+                          <ClassJobs lodestoneData={this.state.lodestoneData}/>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div>

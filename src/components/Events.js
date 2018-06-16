@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Panel } from 'react-bootstrap';
 import { getEvents } from '../utils/api';
-import Time from 'react-time';
 import Moment from 'react-moment';
 import 'moment-timezone';
 

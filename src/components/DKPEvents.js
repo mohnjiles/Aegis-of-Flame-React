@@ -44,7 +44,7 @@ class DKPEvents extends Component {
                         </tr>
                       )
                     })
-                    : ''
+                    : null
                   }
               </tbody>
             </table>

@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {getFFLogsData} from '../utils/api';
 import {arrayUnique} from '../utils/utils';
-import {Button, Table} from 'react-bootstrap';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import {Table, Tabs, Tab} from 'react-bootstrap';
 
 import ParseCharts from './ParseCharts';
 
@@ -24,6 +23,21 @@ class BestLogs extends Component {
         });
     }
 
+    getColorForPercent(percent) {
+        if (percent < 25 && percent >= 0)
+            return "common";
+        if (percent >= 25 && percent < 50)
+            return "uncommon";
+        if (percent >= 50 && percent < 75)
+            return "rare";
+        if (percent >= 75 && percent < 95)
+            return "epic";
+        if (percent >= 95 && percent < 100)
+            return "legendary";
+        if (percent === 100)
+            return "artifact";
+    }
+
     getAvailableClasses() {
         if (this.state.logData == null) return;
 
@@ -41,6 +55,12 @@ class BestLogs extends Component {
         return availableClasses;
     }
 
+    millisToMinutesAndSeconds(millis) {
+        var minutes = Math.floor(millis / 60000);
+        var seconds = ((millis % 60000) / 1000).toFixed(0);
+        return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    }
+
     getBestParsesForSpec(spec) {
         if (this.state.logData == null || spec == null) return;
 
@@ -49,7 +69,7 @@ class BestLogs extends Component {
         let parsesWithSpec = [];
 
         logData.forEach((parse) => {
-            if (parse.specs.some((x) => x.spec == spec)) {
+            if (parse.specs.some((x) => x.spec === spec)) {
                 parsesWithSpec.push(parse);
             }
         });
@@ -57,27 +77,30 @@ class BestLogs extends Component {
         return (
             <div>
 
-                <Table bordered style={{
-                    marginTop: '1em'
-                }}>
+                <Table responsive condensed striped
+                    style={{
+                        marginTop: '1em'
+                    }}>
                     <thead>
                         <tr>
                             <th>Boss</th>
                             <th>Best Historical %</th>
-                            <th>Best {this.state.metric == "dps" ? "DPS" : "HPS"}</th>
+                            <th>Best {this.state.metric === "dps" ? "DPS" : "HPS"}</th>
+                            <th>Fastest Kill</th>
                             <th>Kills</th>
                         </tr>
                     </thead>
                     <tbody>
                     {
                         parsesWithSpec.map((parse, index) => {
-                            let specData = parse.specs.find(x => x.spec == spec);
+                            let specData = parse.specs.find(x => x.spec === spec);
 
                             return (
                                 <tr key={index}>
                                     <td>{parse.name}</td>
-                                    <td>{specData.best_historical_percent.toFixed(2)}%</td>
-                                    <td>{specData.best_persecondamount}</td>
+                                    <td className={this.getColorForPercent(specData.best_historical_percent)}>{specData.best_historical_percent.toFixed(2)}%</td>
+                                    <td className="dps">{specData.best_persecondamount.toFixed(1)}</td>
+                                    <td>{this.millisToMinutesAndSeconds(specData.best_duration)}</td>
                                     <td>{specData.data.length}</td>
                                 </tr>
                             )
@@ -105,31 +128,33 @@ class BestLogs extends Component {
             <div>
                 <div className="row">
                     <div className="col-md-12">
+                        <Tabs activeKey={this.state.selectedSpec}
+                              onSelect={this.selectSpec.bind(this)}  
+                              bsStyle={'pills'}
+                              id={"Jobs"}
+                              >
                         {
                             this.state.availableClasses != null ? 
                             this.state.availableClasses.map((spec, index) => {
-                                return (
-                                    <Button style={{ marginRight: '0.4em' }}
-                                        key={index} onClick={this.selectSpec.bind(this, spec)}
-                                        bsStyle={this.state.selectedSpec == spec ? "success" : "danger"}>
-                                        {spec}
-                                    </Button>
-                                )
+                                return <Tab key={index} eventKey={spec} title={spec}/>
                             })
                             : ""
                         }
+                        </Tabs>
+                        
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-sm-12">
-                        <Button onClick={this.selectMetric.bind(this, "dps")} style={{ marginTop: '0.4em', marginRight: '0.4em' }}
-                            bsStyle={this.state.metric == "dps" ? "info" : "danger"}>
-                            {"DPS"}
-                        </Button>
-                        <Button onClick={this.selectMetric.bind(this, "hps")} style={{ marginTop: '0.4em' }}
-                            bsStyle={this.state.metric == "hps" ? "info" : "danger"}>
-                            {"Healing"}
-                        </Button>
+                        <Tabs activeKey={this.state.metric}
+                            onSelect={this.selectMetric.bind(this)}  
+                            bsStyle={'pills'}
+                            id={"Metrics"}
+                            style={{marginTop: '0.4em'}}
+                            >
+                            <Tab eventKey={'dps'} title={"DPS"}/>
+                            <Tab eventKey={'hps'} title={"Healing"}/>
+                        </Tabs>
                     </div>
                 </div>
                 <div className="row">

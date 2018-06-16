@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { FormGroup, FormControl, ControlLabel, Button, Alert, Fade } from 'react-bootstrap';
-import { addNews } from '../utils/api';
+import { FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
+import { addEvents } from '../utils/api';
 import moment from 'moment';
+import DankAlert from './DankAlert';
 
 class EventManager extends Component {
 
@@ -41,13 +42,12 @@ class EventManager extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const {name, startTime, minILvl } = this.state;
-    // addUser({name, steamUrl, timezone, email}).then(response => {
-    //   window.location.href = '/';
-    // }).catch(error => {
-    //   console.log(error);
-    //   this.setState({alertVisible: true});
-    // });
+    const { name, startTime, minILvl } = this.state;
+    addEvents({ name, startTime, minILvl }).then(response => {
+      this.refs.alert.showAlert("Event added successfully.", "success");
+    }).catch((err) => {
+      this.refs.alert.showAlert(`Error: ${err.response.data}`, "danger");
+    });
   }
 
   render() {
@@ -55,24 +55,7 @@ class EventManager extends Component {
       return (
 
         <div className="row">
-          { this.state.alertVisible ?
-            (
-              <Fade in={this.state.alertVisible}>
-              <Alert bsStyle="danger">
-                    {this.state.alertText}
-                </Alert>
-              </Fade>
-            ) : ''
-          }
-          { this.state.successVisible ?
-            (
-              <Fade in={this.state.successVisible}>
-              <Alert bsStyle="success">
-                    {this.state.successText}
-                </Alert>
-              </Fade>
-            ) : ''
-          }
+          <DankAlert ref="alert"/>
           <div className="col-md-9">
             <form onSubmit={this.handleSubmit}>
               <FormGroup>

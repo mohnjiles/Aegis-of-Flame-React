@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import ReactMde, { ReactMdeCommands } from 'react-mde';
 import { FormGroup, FormControl, ControlLabel, Button, Alert, Fade } from 'react-bootstrap';
 import { updateLodestoneId } from '../utils/api';
-import { isLoggedIn, getUserData } from '../utils/AuthService';
+import { getUserData } from '../utils/AuthService';
 
 class SetLodestoneId extends Component {
 
@@ -38,8 +37,8 @@ class SetLodestoneId extends Component {
       this.setState({ successVisible: true, successText: "ID updated successfully."})
       setTimeout(() => {
         this.setState({ successVisible: false });
-        window.location.reload();
-      }, 5000);
+        window.location.reload();        
+      }, 500);
     }).catch(error => {
       this.setState({ alertVisible: true, alertText: error.response.data});
       setTimeout(() => {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactMde, { ReactMdeCommands } from 'react-mde';
-import { FormGroup, FormControl, ControlLabel, Button, Alert, Fade } from 'react-bootstrap';
+import { FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
 import { addNews } from '../utils/api';
 import DankAlert from './DankAlert';
 

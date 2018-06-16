@@ -20,7 +20,7 @@ class DKPTracker extends Component {
         return {id: user.id, name: user.name, dkp: user.dkp != null ? user.dkp.dkp : 0}
       })
       .sort((a, b) => {
-        return parseInt(b.dkp) - parseInt(a.dkp);
+        return parseInt(b.dkp, 10) - parseInt(a.dkp, 10);
       });
       this.setState({dkp: dkpResult});
     });

@@ -4,9 +4,9 @@ import {getAccessToken} from './AuthService';
 const config = require('../config.json');
 
 const BASE_URL = config.api_base_url;
-const FFLOGS_API_KEY = config.fflogs_api_key;
 
-export {getFoodData, getUser, addUser, getDkp, getDkpEvents, getUsersById, getGames, getNews, setDkp, addNews, getEvents, updateLodestoneId, getLodestoneData, getFFLogsData};
+export {getFoodData, getUser, addUser, getDkp, getDkpEvents, getUsersById, getGames, getNews, 
+  setDkp, addNews, getEvents, addEvents, updateLodestoneId, getLodestoneData, getFFLogsData};
 
 
 function getFoodData() {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import moment from 'moment';
 
 class ParseCharts extends Component {
@@ -33,7 +33,7 @@ class ParseCharts extends Component {
                 <div className="col-sm-12">
                     {this.state.logData != null && this.state.selectedSpec != null ?
                     this.state.logData.map((parse, index) => {
-                        let specs = parse.specs.find(x => x.spec == this.state.selectedSpec);
+                        let specs = parse.specs.find(x => x.spec === this.state.selectedSpec);
                         
                         if (specs != null) {
                             let sortedSpecs = specs.data.sort((a, b) => {
@@ -57,9 +57,11 @@ class ParseCharts extends Component {
                                 </div>
                             )
                         }
+
+                        return null;
                     })
                     
-                        : ""
+                        : null
                     }
                 </div>
             </div>

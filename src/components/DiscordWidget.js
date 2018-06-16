@@ -7,8 +7,8 @@ class DiscordWidget extends Component {
     return (
       <div>
         <Panel header="AoF Discord" bsStyle="success">
-          <iframe className="rounded-border" src="https://discordapp.com/widget?id=176483532464586753&theme=dark"
-            width="100%" height="250" allowtransparency="true" frameborder="0"></iframe>
+          <iframe title="Discord Widget" className="rounded-border" src="https://discordapp.com/widget?id=176483532464586753&theme=dark"
+            width="100%" height="250" allowtransparency="true" frameBorder="0"></iframe>
         </Panel>
       </div>
     )
